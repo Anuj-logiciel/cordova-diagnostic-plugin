@@ -62,7 +62,28 @@
         </config-file>
         <!--END_MODULE LOCATION-->
 
-    
+        <!--BEGIN_MODULE BLUETOOTH-->
+        <config-file target="config.xml" parent="/*">
+            <feature name="Diagnostic_Bluetooth">
+                <param name="ios-package" value="Diagnostic_Bluetooth" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <js-module src="www/ios/diagnostic.bluetooth.js" name="Diagnostic_Bluetooth">
+            <merges target="cordova.plugins.diagnostic.bluetooth" />
+        </js-module>
+
+        <header-file src="src/ios/Diagnostic_Bluetooth.h" />
+        <source-file src="src/ios/Diagnostic_Bluetooth.m" />
+
+        <framework src="CoreBluetooth.framework" />
+
+        <config-file target="*-Info.plist" parent="NSBluetoothPeripheralUsageDescription">
+            <string>This app requires bluetooth access to function properly.</string>
+        </config-file>
+        <!--END_MODULE BLUETOOTH-->
+
         <!--BEGIN_MODULE WIFI-->
         <config-file target="config.xml" parent="/*">
             <feature name="Diagnostic_Wifi">
@@ -269,6 +290,25 @@
         <source-file src="src/android/Diagnostic_Location.java" target-dir="src/cordova/plugins" />
         <!--END_MODULE LOCATION-->
 
+        <!--BEGIN_MODULE BLUETOOTH-->
+        <config-file target="config.xml" parent="/*">
+            <feature name="Diagnostic_Bluetooth" >
+                <param name="android-package" value="cordova.plugins.Diagnostic_Bluetooth"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+        </config-file>
+
+        <js-module name="Diagnostic_Bluetooth" src="www/android/diagnostic.bluetooth.js">
+            <merges target="cordova.plugins.diagnostic.bluetooth" />
+        </js-module>
+
+        <source-file src="src/android/Diagnostic_Bluetooth.java" target-dir="src/cordova/plugins" />
+        <!--END_MODULE BLUETOOTH-->
+
         <!--BEGIN_MODULE WIFI-->
         <config-file target="config.xml" parent="/*">
             <feature name="Diagnostic_Wifi" >
@@ -393,6 +433,22 @@
             <merges target="" />
         </js-module>
         <!--END_MODULE LOCATION-->
+
+        <!--BEGIN_MODULE BLUETOOTH-->
+        <config-file target="config.xml" parent="/*">
+            <feature name="Diagnostic_Bluetooth" >
+                <param name="windows-package" value="cordova.plugins.Diagnostic_Bluetooth"/>
+            </feature>
+        </config-file>
+
+        <js-module src="www/windows/diagnostic.bluetooth.js" name="Diagnostic_Bluetooth">
+            <merges target="cordova.plugins.diagnostic.bluetooth" />
+        </js-module>
+
+        <js-module src="src/windows/diagnosticProxy.bluetooth.js" name="diagnosticProxy.bluetooth">
+            <merges target="" />
+        </js-module>
+        <!--END_MODULE BLUETOOTH-->
 
         <!--BEGIN_MODULE WIFI-->
         <config-file target="config.xml" parent="/*">
